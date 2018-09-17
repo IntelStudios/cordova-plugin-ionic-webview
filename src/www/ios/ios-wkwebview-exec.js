@@ -126,7 +126,8 @@ iOSExec.nativeCallback = function (callbackId, status, message, keepCallback, de
     var args = convertMessageToArgsNativeToJs(message);
     // potential fix of iOS issue with app getting broken after long time on background 
     // https://github.com/ionic-team/cordova-plugin-ionic-webview/pull/124
-    cordova.callbackFromNative(callbackId, success, status, args, keepCallback); // eslint-disable-line
+    // https://github.com/ionic-team/cordova-plugin-ionic-webview/pull/171
+    Promise.resolve(cordova.callbackFromNative(callbackId, success, status, args, keepCallback)); // eslint-disable-line
 };
 
 // for backwards compatibility
